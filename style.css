@@ -1,0 +1,220 @@
+body {
+  padding-top: 10px;
+}
+ul {
+  list-style: none;
+  font-size: 25px;
+  padding-left: 0;
+  color: #fdfcdc;
+  font-family: "Concert One", cursive;
+  font-weight: 200;
+}
+h1,
+h2,
+.city {
+  color: #fdfcdc;
+  text-shadow: 2px 2px #f07167;
+  font-family: "Concert One", cursive;
+  margin-top: -10px;
+}
+
+h2 {
+  font-size: 45px;
+  margin-bottom: -10px;
+}
+h3,
+h5 {
+  color: #fdfcdc;
+  font-family: "Concert One", cursive;
+}
+h3 {
+  font-size: 35px;
+}
+h5 {
+  font-size: 25px;
+}
+p {
+  color: #0081a7;
+  font-size: 18px;
+  font-family: "Concert One", cursive;
+  font-weight: 100;
+  margin-bottom: 8px;
+}
+hr {
+  color: #fed9b7;
+  border-top: 7px solid #fed9b7;
+  border-radius: 2px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+a {
+  text-decoration: none;
+}
+.input-group {
+  margin-top: 34px;
+  margin-bottom: 34px;
+  border: 13px solid #f07167;
+  border-radius: 10px;
+  box-shadow: 8px 8px #0081a7;
+}
+.useLocationButton {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #00afb9;
+  color: #fdfcdc;
+  font-size: 20px;
+  border: none;
+  box-shadow: none;
+}
+.useLocationButton:hover {
+  background: #0081a7;
+}
+.form-control {
+  border: none;
+}
+.display-2 {
+  font-weight: bolder;
+}
+
+.city {
+  font-size: 40px;
+  margin-top: -20px;
+}
+.temp {
+  font-size: 85px;
+  margin-top: -20px;
+}
+
+.sunny {
+  display: block;
+  margin: 0 auto;
+  width: 240px;
+  background-color: #0081a7;
+  border: solid 4px #0081a7;
+  border-radius: 20%;
+}
+.appbox {
+  border: solid 9px #f07167;
+  border-radius: 5%;
+  background-color: #fdfcdc;
+  z-index: 2;
+  box-shadow: 6px 6px 2px #0081a7;
+}
+.today {
+  border: solid 6px #00afb9;
+  border-radius: 25px;
+  background-color: #00afb9;
+  box-shadow: 8px 8px #f07167;
+}
+.week {
+  background-color: #f07167;
+  border: solid 6px #f07167;
+  border-radius: 25px;
+  box-shadow: 8px 8px #00afb9;
+}
+
+.tomorrow {
+  margin-top: 10px;
+}
+.day {
+  text-align: right;
+  color: #f07167;
+  text-shadow: -2px 2px #0081a7;
+  font-size: 58px;
+  font-weight: 900;
+
+  border: solid 6px #f07167;
+  border-radius: 25px;
+  background-color: #fdfcdc;
+
+  margin-top: 1px;
+  margin-left: -65px;
+  box-shadow: 3px 3px #0081a7;
+}
+
+.time {
+  color: #f07167;
+  text-align: right;
+  text-shadow: 2px 2px #0081a7;
+  font-size: 58px;
+  font-weight: 900;
+  border: solid 6px #f07167;
+  border-radius: 25px;
+  background-color: #fdfcdc;
+  padding-bottom: 5px;
+  margin-left: -65px;
+  margin-top: 50px;
+  box-shadow: 3px 3px #0081a7;
+}
+
+.unit {
+  display: block;
+  text-align: right;
+  color: #f07167;
+  text-shadow: 2px 2px #0081a7;
+  font-size: 70px;
+  font-weight: 900;
+  border: solid 6px #f07167;
+  border-radius: 25px;
+  background-color: #fdfcdc;
+  margin-top: 10px;
+  padding-right: 10px;
+  margin-left: -65px;
+  margin-right: 90px;
+  transition: all 200ms ease-in-out;
+  box-shadow: 3px 3px #0081a7;
+}
+
+.unit2 {
+  display: block;
+  text-align: right;
+  color: #f07167;
+  text-shadow: 2px 2px #0081a7;
+  font-size: 70px;
+  font-weight: 900;
+  border: solid 6px #f07167;
+  border-radius: 25px;
+  background-color: #fdfcdc;
+  margin-top: 1px;
+  padding-right: 10px;
+  margin-right: 90px;
+  margin-left: -65px;
+  z-index: 1;
+  box-shadow: 3px 3px #0081a7;
+}
+.unit:hover,
+.unit2:hover {
+  background-color: #f07167;
+  border-color: #0081a7;
+  color: #fdfcdc;
+  transition: ease-in-out 100ms;
+  cursor: pointer;
+}
+.extra {
+  display: block;
+  text-align: right;
+  color: #f07167;
+  text-shadow: 2px 2px #0081a7;
+  font-size: 70px;
+  font-weight: 900;
+  border: solid 6px #f07167;
+  border-radius: 25px;
+  background-color: #fdfcdc;
+  padding-left: 40px;
+  padding-bottom: 30px;
+  margin-top: 10px;
+  margin-left: -65px;
+  transition: all 200ms ease-in-out;
+  box-shadow: 3px 3px #0081a7;
+}
+.useMyLocation {
+  background: #00afb9;
+  border: solid 6px #00afb9;
+  box-shadow: none;
+  font-size: 22px;
+  color: #fdfcdc;
+}
+
+.magnifier {
+  font-size: 22px;
+}
