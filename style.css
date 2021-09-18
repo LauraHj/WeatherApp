@@ -88,7 +88,7 @@ a {
 .sunny {
   display: block;
   margin: 0 auto;
-  width: 240px;
+  width: 190px;
   background-color: #0081a7;
   border: solid 4px #0081a7;
   border-radius: 20%;
@@ -217,4 +217,8 @@ a {
 
 .magnifier {
   font-size: 22px;
+}
+.weatherDescribe {
+  font-size: 35px;
+  margin-top: -10px;
 }

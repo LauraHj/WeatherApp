@@ -85,7 +85,10 @@ function getUrl(position) {
   function showTemp(response) {
     let temperature = Math.round(response.data.main.temp) + "°C";
     let temp = document.querySelector("#temp");
+    let weatherDescription = document.querySelector("#weather-description");
+    let description = response.data.weather[0].description;
     temp.innerHTML = ` ${temperature}`;
+    weatherDescription.innerHTML = `${description}`;
   }
 
   axios.get(apiUrl).then(showTemp);
@@ -104,7 +107,10 @@ function showTemp(event) {
   function showTempFromCity(response) {
     let temperature = Math.round(response.data.main.temp) + "°C";
     let temp = document.querySelector("#temp");
+    let weatherDescription = document.querySelector("#weather-description");
+    let description = response.data.weather[0].description;
     temp.innerHTML = ` ${temperature}`;
+    weatherDescription.innerHTML = `${description}`;
   }
   axios.get(apiUrlCity).then(showTempFromCity);
 }
