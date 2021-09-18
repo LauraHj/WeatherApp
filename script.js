@@ -87,8 +87,14 @@ function getUrl(position) {
     let temp = document.querySelector("#temp");
     let weatherDescription = document.querySelector("#weather-description");
     let description = response.data.weather[0].description;
+    let tempMax = document.querySelector("#temp-max");
+    let todaysMax = Math.round(response.data.main.temp_max);
+    let tempMin = document.querySelector("#temp-min");
+    let todaysMin = Math.round(response.data.main.temp_min);
     temp.innerHTML = ` ${temperature}`;
     weatherDescription.innerHTML = `${description}`;
+    tempMax.innerHTML = `${todaysMax}°C`;
+    tempMin.innerHTML = `${todaysMin}°C`;
   }
 
   axios.get(apiUrl).then(showTemp);
@@ -109,8 +115,14 @@ function showTemp(event) {
     let temp = document.querySelector("#temp");
     let weatherDescription = document.querySelector("#weather-description");
     let description = response.data.weather[0].description;
+    let tempMax = document.querySelector("#temp-max");
+    let todaysMax = Math.round(response.data.main.temp_max);
+    let tempMin = document.querySelector("#temp-min");
+    let todaysMin = Math.round(response.data.main.temp_min);
     temp.innerHTML = ` ${temperature}`;
     weatherDescription.innerHTML = `${description}`;
+    tempMax.innerHTML = `${todaysMax}°C`;
+    tempMin.innerHTML = `${todaysMin}°C`;
   }
   axios.get(apiUrlCity).then(showTempFromCity);
 }
