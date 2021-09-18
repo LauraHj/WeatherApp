@@ -81,6 +81,8 @@ function getUrl(position) {
   let lon = position.coords.longitude;
   let apiKey = "c599162a0b8730dc4520eddc02755e60";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  reverseGeocodeApiKey = "a36f3f6069d4b31bb2a19b59ee676056";
+  reverseGeocodeApiUrl = `http://api.positionstack.com/v1/reverse?access_key=${reverseGeocodeApiKey}&query=${lat},${lon}`;
 
   function showTemp(response) {
     let temperature = Math.round(response.data.main.temp) + "°C";
@@ -95,12 +97,18 @@ function getUrl(position) {
     let humidityData = response.data.main.humidity;
     temp.innerHTML = ` ${temperature}`;
     weatherDescription.innerHTML = `${description}`;
-    tempMax.innerHTML = `${todaysMax}°C`;
-    tempMin.innerHTML = `${todaysMin}°C`;
+    tempMax.innerHTML = `Today's high: ${todaysMax}°C`;
+    tempMin.innerHTML = `Today's low ${todaysMin}°C`;
     humidity.innerHTML = `Humidity: ${humidityData}%`;
+  }
+  function reverseGeocode(response) {
+    let location = document.querySelector("#location");
+    let cityName = response.data.data[0].locality;
+    location.innerHTML = `in ${cityName}`;
   }
 
   axios.get(apiUrl).then(showTemp);
+  axios.get(reverseGeocodeApiUrl).then(reverseGeocode);
 }
 
 let useLocationButton = document.querySelector("#use-location");
@@ -126,8 +134,8 @@ function showTemp(event) {
     let humidityData = response.data.main.humidity;
     temp.innerHTML = `${temperature}`;
     weatherDescription.innerHTML = `${description}`;
-    tempMax.innerHTML = `${todaysMax}°C`;
-    tempMin.innerHTML = `${todaysMin}°C`;
+    tempMax.innerHTML = `Today's high ${todaysMax}°C`;
+    tempMin.innerHTML = `Today's low ${todaysMin}°C`;
     humidity.innerHTML = `Humidity: ${humidityData}%`;
   }
   axios.get(apiUrlCity).then(showTempFromCity);
