@@ -84,14 +84,16 @@ a {
   font-size: 85px;
   margin-top: -20px;
 }
-
-.sunny {
+.park {
   display: block;
   margin: 0 auto;
-  width: 190px;
-  background-color: #0081a7;
-  border: solid 4px #0081a7;
-  border-radius: 20%;
+  width: 270px;
+}
+.icon {
+  display: block;
+  margin-left: 200px;
+  margin-bottom: -100px;
+  width: 130px;
 }
 .appbox {
   border: solid 9px #f07167;
@@ -160,7 +162,7 @@ a {
   margin-top: 10px;
   padding-right: 10px;
   margin-left: -65px;
-  margin-right: 90px;
+  margin-right: 50px;
   transition: all 200ms ease-in-out;
   box-shadow: 3px 3px #0081a7;
 }
@@ -177,7 +179,7 @@ a {
   background-color: #fdfcdc;
   margin-top: 1px;
   padding-right: 10px;
-  margin-right: 90px;
+  margin-right: 50px;
   margin-left: -65px;
   z-index: 1;
   box-shadow: 3px 3px #0081a7;

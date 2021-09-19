@@ -95,11 +95,21 @@ function getUrl(position) {
     let todaysMin = Math.round(response.data.main.temp_min);
     let humidity = document.querySelector("#humidity");
     let humidityData = response.data.main.humidity;
+    let currently = document.querySelector("#currently");
+    let iconElement = document.querySelector("#icon");
+    let icon = response.data.weather[0].icon;
+    let parkElement = document.querySelector("#park-element");
     temp.innerHTML = ` ${temperature}`;
     weatherDescription.innerHTML = `${description}`;
     tempMax.innerHTML = `Today's high: ${todaysMax}°C`;
-    tempMin.innerHTML = `Today's low ${todaysMin}°C`;
+    tempMin.innerHTML = `Today's low: ${todaysMin}°C`;
     humidity.innerHTML = `Humidity: ${humidityData}%`;
+    currently.innerHTML = `CURRENTLY`;
+    iconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${icon}@2x.png`
+    );
+    parkElement.setAttribute("src", "park.svg");
   }
   function reverseGeocode(response) {
     let location = document.querySelector("#location");
@@ -132,11 +142,21 @@ function showTemp(event) {
     let todaysMin = Math.round(response.data.main.temp_min);
     let humidity = document.querySelector("#humidity");
     let humidityData = response.data.main.humidity;
+    let currently = document.querySelector("#currently");
+    let iconElement = document.querySelector("#icon");
+    let icon = response.data.weather[0].icon;
+    let parkElement = document.querySelector("#park-element");
     temp.innerHTML = `${temperature}`;
     weatherDescription.innerHTML = `${description}`;
-    tempMax.innerHTML = `Today's high ${todaysMax}°C`;
-    tempMin.innerHTML = `Today's low ${todaysMin}°C`;
+    tempMax.innerHTML = `Today's high: ${todaysMax}°C`;
+    tempMin.innerHTML = `Today's low: ${todaysMin}°C`;
     humidity.innerHTML = `Humidity: ${humidityData}%`;
+    currently.innerHTML = `CURRENTLY`;
+    iconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${icon}@2x.png`
+    );
+    parkElement.setAttribute("src", "park.svg");
   }
   axios.get(apiUrlCity).then(showTempFromCity);
 }
