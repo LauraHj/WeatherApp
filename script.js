@@ -1,6 +1,14 @@
 //Changing date and time
 let now = new Date();
-let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+let days = [
+  "SUNDAY",
+  "MONDAY",
+  "TUESDAY",
+  "WEDNESDAY",
+  "THURSDAY",
+  "FRIDAY",
+  "SATURDAY",
+];
 
 let weekday = document.querySelector("#weekday");
 weekday.innerHTML = days[now.getDay()].toUpperCase();
@@ -30,45 +38,45 @@ function changeLocation(event) {
 let form = document.querySelector("#location-form");
 form.addEventListener("submit", changeLocation);
 
-//Celsius
-let tempsC = ["21°C/34°C", "15°C/28°C", "17°C/30°C", "21°C/33°C"];
+// //Celsius
+// let tempsC = ["21°C/34°C", "15°C/28°C", "17°C/30°C", "21°C/33°C"];
 
-function celsius(event) {
-  event.preventDefault();
-  let temp = document.querySelector("#temp");
-  let tomorrow = document.querySelector("#tomorrow-temp");
-  let dayTwo = document.querySelector("#two-days");
-  let dayThree = document.querySelector("#three-days");
-  let dayFour = document.querySelector("#four-days");
+// function celsius(event) {
+//   event.preventDefault();
+//   let temp = document.querySelector("#temp");
+//   let tomorrow = document.querySelector("#tomorrow-temp");
+//   let dayTwo = document.querySelector("#two-days");
+//   let dayThree = document.querySelector("#three-days");
+//   let dayFour = document.querySelector("#four-days");
 
-  temp.innerHTML = `19°C`;
-  tomorrow.innerHTML = tempsC[0];
-  dayTwo.innerHTML = tempsC[1];
-  dayThree.innerHTML = tempsC[2];
-  dayFour.innerHTML = tempsC[3];
-}
-let celsiusButton = document.querySelector("#celsius");
-celsiusButton.addEventListener("click", celsius);
+//   temp.innerHTML = `19°C`;
+//   tomorrow.innerHTML = tempsC[0];
+//   dayTwo.innerHTML = tempsC[1];
+//   dayThree.innerHTML = tempsC[2];
+//   dayFour.innerHTML = tempsC[3];
+// }
+// let celsiusButton = document.querySelector("#celsius");
+// celsiusButton.addEventListener("click", celsius);
 
-//fahrenheit
-let tempsF = ["59°F/90°F", "57°F/94°F", "50°F/85°F", "59°F/89°F"];
+// //fahrenheit
+// let tempsF = ["59°F/90°F", "57°F/94°F", "50°F/85°F", "59°F/89°F"];
 
-function fahrenheit(event) {
-  event.preventDefault();
-  let temp = document.querySelector("#temp");
-  let tomorrow = document.querySelector("#tomorrow-temp");
-  let dayTwo = document.querySelector("#two-days");
-  let dayThree = document.querySelector("#three-days");
-  let dayFour = document.querySelector("#four-days");
+// function fahrenheit(event) {
+//   event.preventDefault();
+//   let temp = document.querySelector("#temp");
+//   let tomorrow = document.querySelector("#tomorrow-temp");
+//   let dayTwo = document.querySelector("#two-days");
+//   let dayThree = document.querySelector("#three-days");
+//   let dayFour = document.querySelector("#four-days");
 
-  temp.innerHTML = `76°F`;
-  tomorrow.innerHTML = tempsF[0];
-  dayTwo.innerHTML = tempsF[1];
-  dayThree.innerHTML = tempsF[2];
-  dayFour.innerHTML = tempsF[3];
-}
-let fahrenheitButton = document.querySelector("#fahrenheit");
-fahrenheitButton.addEventListener("click", fahrenheit);
+//   temp.innerHTML = `76°F`;
+//   tomorrow.innerHTML = tempsF[0];
+//   dayTwo.innerHTML = tempsF[1];
+//   dayThree.innerHTML = tempsF[2];
+//   dayFour.innerHTML = tempsF[3];
+// }
+// let fahrenheitButton = document.querySelector("#fahrenheit");
+// fahrenheitButton.addEventListener("click", fahrenheit);
 
 //Display temperature using geolocation
 function getLocation() {

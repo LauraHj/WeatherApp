@@ -18,14 +18,15 @@
       href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap"
       rel="stylesheet"
     />
-    <script src="https://kit.fontawesome.com/4a21a0c7ea.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/4a21a0c7ea.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-2">
-               </div>
         <!-- Whole box -->
         <div class="col-8 appbox" id="appbox">
           <!-- Location search -->
@@ -40,11 +41,18 @@
                     aria-describedby="inputGroup-sizing-lg"
                     placeholder="Please type location"
                     id="location-input"
+                    autocomplete="off"
                   />
                   <div class="input-group-append">
-                   <button class="btn btn-outline-secondary useLocationButton" type="button" id="use-location">Use my location <i class="fas fa-search-location magnifier"></i></button>
-                </div>
-               
+                    <button
+                      class="btn btn-outline-secondary useLocationButton"
+                      type="button"
+                      id="use-location"
+                    >
+                      Use my location
+                      <i class="fas fa-search-location magnifier"></i>
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
@@ -59,19 +67,17 @@
 
               <h2 class="text-center" id="currently"></h2>
               <h1 class="display-2 text-center temp" id="temp"></h1>
-              <h3 class="text-center city" id="location">Please enter a location</h3>
+              <h3 class="text-center city" id="location">
+                Please enter a location
+              </h3>
               <ul>
-                <li class="text-center text-uppercase weatherDescribe" id="weather-description"></li>
-                
+                <li
+                  class="text-center text-uppercase weatherDescribe"
+                  id="weather-description"
+                ></li>
               </ul>
-              <img class = "icon"
-                id="icon"
-              />
-              <img 
-              class="park" 
-              id="park-element"
-              src=""
-              /> 
+              <img class="icon" id="icon" />
+              <img class="park" id="park-element" src="" />
               <br />
               <ul>
                 <li class="text-center" id="temp-max"></li>
@@ -102,36 +108,44 @@
             <div class="col-12 text-center">
               <br />
               <p>
-                Coded by Laura Hjortshoj-Haller | 2021 | laura.hjoh@gmail.com | <a href=https://github.com/LauraHj/WeatherApp>GitHub</a>
+                Coded by Laura Hjortshoj-Haller | 2021 |
+                <a href="mailto:laura.hjoh@gmail.com"> laura.hjoh@gmail.com </a
+                >|
+                <a href="https://github.com/LauraHj/WeatherApp" target="_blank"
+                  >GitHub</a
+                >
               </p>
             </div>
           </div>
         </div>
-
-        <div class="col-2">
-          <div class="row">
-            <h3 class="time"><span id="time"></span></h3>
+        <div class="col-1"></div>
+        <!--Right side boxes-->
+        <div class="col-3">
+          <div class="row dateAndTime">
+            <h3 class="timeText">
+              <span id="time"></span>
+              <div class="weekDay" id="weekday">MONDAY</div>
+            </h3>
           </div>
-          <div class="row">
-          <h3 class="day">
-            <span id="weekday">MONDAY</span>
 
-          </div>     <div class="row">
-            <h3 class="extra">
-            <br />
-            <br />
-            <br />
+          <div class="row moreInfo">
+            <h3 class="uvText">More about today:</h3>
+            <button class="uvIndex">UV Index</button>
+            <ul class="uvIndexInfo"></ul>
+            <button class="humidity">Humidity</button>
+            <ul class="humidityInfo"></ul>
+            <button class="airQuality">Air Quality</button>
+            <ul class="airQualityInfo"></ul>
+          </div>
 
-          </h3>
-        </div>
-          <div class="row">
-            <a href="#" id="celsius">
+          <!-- <div class="row">
+            <a href="#" id="celsius"> 
               <h3 class="unit">°C</h3>
             </a>
-          <a href="#" id="fahrenheit">
-            <h3 class="unit2">°F</h3>
-          </a>
-          </div>
+            <a href="#" id="fahrenheit">
+              <h3 class="unit2">°F</h3>
+            </a>
+          </div> -->
         </div>
       </div>
     </div>
