@@ -89,6 +89,7 @@ a {
   display: block;
   margin: 0 auto;
   width: 270px;
+  margin-bottom: 10px;
 }
 .icon {
   display: block;
@@ -155,16 +156,6 @@ a {
 .weekDay {
   font-size: 48px;
 }
-.uvIndex:hover,
-.humidity:hover,
-.airQuality:hover,
-.pop:hover {
-  background-color: #0081a7;
-
-  color: #fdfcdc;
-  transition: ease-in-out 200ms;
-  cursor: pointer;
-}
 
 /* .unit:hover,
 .unit2:hover {
@@ -177,28 +168,33 @@ a {
 .moreInfo {
   display: block;
   border: solid 6px #f07167;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: #fdfcdc;
   padding-bottom: 5px;
   margin-top: 50px;
   box-shadow: 3px 3px #0081a7;
   margin-left: -40px;
+  padding: 10px;
 }
-.uvText {
+.moreInfoText {
   color: #f07167;
   text-align: center;
-  font-size: 35px;
-  font-weight: 900;
+  font-size: 37px;
+  font-weight: 580;
+  text-shadow: 2px 2px #0081a7;
+  padding-bottom: 5px;
 }
 .uvIndex,
 .humidity,
 .airQuality,
 .pop {
-  background-color: #f07167;
-  font-size: 30px;
-  border: 0;
+  font-size: 35px;
   font-family: "Concert One", cursive;
+  background-color: #00afb9;
   color: #fdfcdc;
+  text-shadow: none;
+  text-align: center;
+  border-radius: 10px;
 }
 .useMyLocation {
   background: #00afb9;
@@ -216,10 +212,22 @@ a {
 }
 
 .uvIndexInfo,
-.uvIndexInfoDescribe,
 .airQualityInfo,
 .humidityInfo,
 .popValue {
-  color: #0081a7;
+  color: #fdfcdc;
   text-align: center;
+  background-color: #00afb9;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-shadow: 2px 2px #0081a7;
+}
+.uvIndexInfoDescribe {
+  color: #fdfcdc;
+  text-align: center;
+  background-color: #00afb9;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-shadow: none;
+  padding-bottom: 2px;
 }
