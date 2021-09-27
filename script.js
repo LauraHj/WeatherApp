@@ -38,47 +38,7 @@ function changeLocation(event) {
 let form = document.querySelector("#location-form");
 form.addEventListener("submit", changeLocation);
 
-// //Celsius
-// let tempsC = ["21°C/34°C", "15°C/28°C", "17°C/30°C", "21°C/33°C"];
-
-// function celsius(event) {
-//   event.preventDefault();
-//   let temp = document.querySelector("#temp");
-//   let tomorrow = document.querySelector("#tomorrow-temp");
-//   let dayTwo = document.querySelector("#two-days");
-//   let dayThree = document.querySelector("#three-days");
-//   let dayFour = document.querySelector("#four-days");
-
-//   temp.innerHTML = `19°C`;
-//   tomorrow.innerHTML = tempsC[0];
-//   dayTwo.innerHTML = tempsC[1];
-//   dayThree.innerHTML = tempsC[2];
-//   dayFour.innerHTML = tempsC[3];
-// }
-// let celsiusButton = document.querySelector("#celsius");
-// celsiusButton.addEventListener("click", celsius);
-
-// //fahrenheit
-// let tempsF = ["59°F/90°F", "57°F/94°F", "50°F/85°F", "59°F/89°F"];
-
-// function fahrenheit(event) {
-//   event.preventDefault();
-//   let temp = document.querySelector("#temp");
-//   let tomorrow = document.querySelector("#tomorrow-temp");
-//   let dayTwo = document.querySelector("#two-days");
-//   let dayThree = document.querySelector("#three-days");
-//   let dayFour = document.querySelector("#four-days");
-
-//   temp.innerHTML = `76°F`;
-//   tomorrow.innerHTML = tempsF[0];
-//   dayTwo.innerHTML = tempsF[1];
-//   dayThree.innerHTML = tempsF[2];
-//   dayFour.innerHTML = tempsF[3];
-// }
-// let fahrenheitButton = document.querySelector("#fahrenheit");
-// fahrenheitButton.addEventListener("click", fahrenheit);
-
-//Display temperature using geolocation
+//Display weather info using geolocation
 function getLocation() {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getUrl);
@@ -89,8 +49,6 @@ function getUrl(position) {
   let lon = position.coords.longitude;
   let apiKey = "c599162a0b8730dc4520eddc02755e60";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  reverseGeocodeApiKey = "a36f3f6069d4b31bb2a19b59ee676056";
-  reverseGeocodeApiUrl = `http://api.positionstack.com/v1/reverse?access_key=${reverseGeocodeApiKey}&query=${lat},${lon}`;
   let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
   let apiUrlAirQuality = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
@@ -109,23 +67,25 @@ function getUrl(position) {
     let iconElement = document.querySelector("#icon");
     let icon = response.data.weather[0].icon;
     let parkElement = document.querySelector("#park-element");
+    let location = document.querySelector("#location");
+    let cityName = response.data.name;
+    let windSpeedElement = document.querySelector("#wind-speed");
+    let windSpeed = response.data.wind.speed;
     temp.innerHTML = ` ${temperature}`;
     weatherDescription.innerHTML = `${description}`;
     tempMax.innerHTML = `Today's high: ${todaysMax}°C`;
     tempMin.innerHTML = `Today's low: ${todaysMin}°C`;
     humidity.innerHTML = `${humidityData}%`;
     currently.innerHTML = `CURRENTLY`;
+    location.innerHTML = `in ${cityName}`;
     iconElement.setAttribute(
       "src",
       `http://openweathermap.org/img/wn/${icon}@2x.png`
     );
     parkElement.setAttribute("src", "park.svg");
+    windSpeedElement.innerHTML = `${windSpeed}km/h`;
   }
-  function reverseGeocode(response) {
-    let location = document.querySelector("#location");
-    let cityName = response.data.data[0].locality;
-    location.innerHTML = `in ${cityName}`;
-  }
+
   function showUv(response) {
     let uvInfo = document.querySelector("#uv-info");
     let uvDescribeElement = document.querySelector("#uv-info-describe");
@@ -175,7 +135,7 @@ function getUrl(position) {
   }
 
   axios.get(apiUrl).then(showTemp);
-  axios.get(reverseGeocodeApiUrl).then(reverseGeocode);
+  // axios.get(reverseGeocodeApiUrl).then(reverseGeocode);
   axios.get(apiUrlMoreInfo).then(showUv);
   axios.get(apiUrlAirQuality).then(showAirQuality);
   axios.get(apiUrlMoreInfo).then(showChanceOfRain);
@@ -184,14 +144,14 @@ function getUrl(position) {
 let useLocationButton = document.querySelector("#use-location");
 useLocationButton.addEventListener("click", getLocation);
 
-//Display temp using search input
+//Display weather info using search input
 function showTemp(event) {
   event.preventDefault();
   let city = document.querySelector("#location-input");
   let apiKey = "c599162a0b8730dc4520eddc02755e60";
   let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=${apiKey}`;
-  let geocodeApiKey = "a36f3f6069d4b31bb2a19b59ee676056";
-  let geocodeURL = `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${city.value}`;
+  // let geocodeApiKey = "a36f3f6069d4b31bb2a19b59ee676056";
+  // let geocodeURL = `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${city.value}`;
 
   function showTempFromCity(response) {
     let temperature = Math.round(response.data.main.temp) + "°C";
@@ -208,6 +168,8 @@ function showTemp(event) {
     let iconElement = document.querySelector("#icon");
     let icon = response.data.weather[0].icon;
     let parkElement = document.querySelector("#park-element");
+    let windSpeedElement = document.querySelector("#wind-speed");
+    let windSpeed = response.data.wind.speed;
     temp.innerHTML = `${temperature}`;
     weatherDescription.innerHTML = `${description}`;
     tempMax.innerHTML = `Today's high: ${todaysMax}°C`;
@@ -219,12 +181,15 @@ function showTemp(event) {
       `http://openweathermap.org/img/wn/${icon}@2x.png`
     );
     parkElement.setAttribute("src", "park.svg");
+    windSpeedElement.innerHTML = `${windSpeed}km/h`;
   }
 
   function findCoords(response) {
-    let lat = response.data.data[0].latitude;
-    let lon = response.data.data[0].longitude;
-    let apiKey = "c599162a0b8730dc4520eddc02755e60";
+    // let lat = response.data.data[0].latitude;
+    // let lon = response.data.data[0].longitude;
+    // let apiKey = "c599162a0b8730dc4520eddc02755e60";
+    let lat = response.data.coord.lat;
+    let lon = response.data.coord.lon;
     let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
     let apiUrlAirQuality = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
@@ -277,26 +242,19 @@ function showTemp(event) {
   }
 
   axios.get(apiUrlCity).then(showTempFromCity);
-  axios.get(geocodeURL).then(findCoords);
+  axios.get(apiUrlCity).then(findCoords);
 }
 let input = document.querySelector("#location-form");
 input.addEventListener("submit", showTemp);
 
-//Fetch UV data
+//Forecast
 
-// function getUvIndex() {
-//   let lat = 27.4705;
-//   let lon = 153.026;
-//   let apiKeyUv = "c599162a0b8730dc4520eddc02755e60";
-//   let uvUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKeyUv}`;
+// function showForecast(response) {
+//   let forecast0 = document.querySelector("#tomorrow");
+//   let forecast1 = document.querySelector("#forecast-1");
+//   let forecast2 = document.querySelector("#forecast-2");
+//   let forecast3 = document.querySelector("#forecast-3");
 
-//   function showUv(response) {
-//     let uvInfo = document.querySelector("#uv-info");
-//     let uvMax = Math.round(response.data.daily[0].uvi);
-//     uvInfo.innerHTML = `Today's maximum UV index: ${uvMax}`;
-//   }
-//   axios.get(uvUrl).then(showUv);
+//   let forecast[0] =
+
 // }
-
-// let uvButton = document.querySelector("#uvIndexButton");
-// uvButton.addEventListener("click", getUvIndex);

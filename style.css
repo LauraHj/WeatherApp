@@ -120,21 +120,6 @@ a {
 .tomorrow {
   margin-top: 10px;
 }
-/* .day {
-  text-align: right;
-  color: #f07167;
-  text-shadow: -2px 2px #0081a7;
-  font-size: 58px;
-  font-weight: 900;
-
-  border: solid 6px #f07167;
-  border-radius: 25px;
-  background-color: #fdfcdc;
-
-  margin-top: 1px;
-  margin-left: -65px;
-  box-shadow: 3px 3px #0081a7;
-} */
 
 .dateAndTime {
   display: block;
@@ -142,7 +127,7 @@ a {
   border-radius: 20px;
   background-color: #fdfcdc;
   padding-bottom: 5px;
-  margin-top: 50px;
+  margin-top: 40px;
   box-shadow: 3px 3px #0081a7;
   margin-left: -40px;
 }
@@ -157,45 +142,26 @@ a {
   font-size: 48px;
 }
 
-/* .unit:hover,
-.unit2:hover {
-  background-color: #f07167;
-  border-color: #0081a7;
-  color: #fdfcdc;
-  transition: ease-in-out 100ms;
-  cursor: pointer;
-} */
 .moreInfo {
   display: block;
   border: solid 6px #f07167;
   border-radius: 20px;
   background-color: #fdfcdc;
   padding-bottom: 5px;
-  margin-top: 50px;
+  margin-top: 30px;
   box-shadow: 3px 3px #0081a7;
   margin-left: -40px;
-  padding: 10px;
+  padding: 15px;
 }
 .moreInfoText {
   color: #f07167;
   text-align: center;
-  font-size: 37px;
-  font-weight: 580;
-  text-shadow: 2px 2px #0081a7;
-  padding-bottom: 5px;
+  font-size: 34px;
+  font-weight: 595;
+  text-shadow: 1px 1px #0081a7;
+  padding-bottom: 7px;
 }
-.uvIndex,
-.humidity,
-.airQuality,
-.pop {
-  font-size: 35px;
-  font-family: "Concert One", cursive;
-  background-color: #00afb9;
-  color: #fdfcdc;
-  text-shadow: none;
-  text-align: center;
-  border-radius: 10px;
-}
+
 .useMyLocation {
   background: #00afb9;
   border: solid 6px #00afb9;
@@ -211,16 +177,38 @@ a {
   margin-top: -10px;
 }
 
+.uvIndex,
+.windSpeed,
+.humidity,
+.airQuality,
+.pop {
+  font-size: 30px;
+  font-weight: 100;
+  font-family: "Concert One", cursive;
+  background-color: #00afb9;
+  color: #fdfcdc;
+  text-shadow: none;
+  text-align: center;
+  border-radius: 10px;
+  padding-bottom: 2px;
+}
+
 .uvIndexInfo,
 .airQualityInfo,
 .humidityInfo,
-.popValue {
+.popValue,
+.windSpeedInfo {
   color: #fdfcdc;
+  font-size: 38px;
   text-align: center;
   background-color: #00afb9;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   text-shadow: 2px 2px #0081a7;
+}
+.airQualityInfo,
+.humidityInfo {
+  padding-bottom: 4px;
 }
 .uvIndexInfoDescribe {
   color: #fdfcdc;
@@ -229,5 +217,9 @@ a {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   text-shadow: none;
-  padding-bottom: 2px;
+  padding-bottom: 5px;
+  margin-bottom: 13px;
+}
+.windSpeedInfo {
+  margin-bottom: 19px;
 }
