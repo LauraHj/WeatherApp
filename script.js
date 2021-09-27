@@ -54,6 +54,7 @@ function getUrl(position) {
   let apiUrlAirQuality = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
   function showTemp(response) {
+    let todayBox = document.querySelector(".today");
     let temperature = Math.round(response.data.main.temp) + "°C";
     let temp = document.querySelector("#temp");
     let weatherDescription = document.querySelector("#weather-description");
@@ -72,6 +73,7 @@ function getUrl(position) {
     let cityName = response.data.name;
     let windSpeedElement = document.querySelector("#wind-speed");
     let windSpeed = response.data.wind.speed;
+    todayBox.style.visibility = "visible";
     temp.innerHTML = ` ${temperature}`;
     weatherDescription.innerHTML = `${description}`;
     tempMax.innerHTML = `Today's high: ${todaysMax}°C`;
@@ -152,6 +154,10 @@ function getUrl(position) {
   }
 
   function showForecast(response) {
+    let forecastBox1 = document.querySelector("#forecast-box1");
+    let forecastBox2 = document.querySelector("#forecast-box2");
+    let forecastBox3 = document.querySelector("#forecast-box3");
+    let forecastBox4 = document.querySelector("#forecast-box4");
     let forecast0Element = document.querySelector("#tomorrow");
     let forecast1Element = document.querySelector("#forecast-1");
     let forecast2Element = document.querySelector("#forecast-2");
@@ -169,6 +175,10 @@ function getUrl(position) {
     let forecastIcon2 = response.data.daily[3].weather[0].icon;
     let forecastIcon3 = response.data.daily[4].weather[0].icon;
 
+    forecastBox1.style.visibility = "visible";
+    forecastBox2.style.visibility = "visible";
+    forecastBox3.style.visibility = "visible";
+    forecastBox4.style.visibility = "visible";
     forecast0Element.innerHTML = `TOMORROW`;
     forecast1Element.innerHTML = `${formatDay(response.data.daily[2].dt)}`;
     forecast2Element.innerHTML = `${formatDay(response.data.daily[3].dt)}`;
@@ -237,6 +247,7 @@ function showTemp(event) {
   }
 
   function showTempFromCity(response) {
+    let todayBox = document.querySelector(".today");
     let temperature = Math.round(response.data.main.temp) + "°C";
     let temp = document.querySelector("#temp");
     let weatherDescription = document.querySelector("#weather-description");
@@ -253,6 +264,7 @@ function showTemp(event) {
     let parkElement = document.querySelector("#park-element");
     let windSpeedElement = document.querySelector("#wind-speed");
     let windSpeed = response.data.wind.speed;
+    todayBox.style.visibility = "visible";
     temp.innerHTML = `${temperature}`;
     weatherDescription.innerHTML = `${description}`;
     tempMax.innerHTML = `Today's high: ${todaysMax}°C`;
@@ -323,6 +335,10 @@ function showTemp(event) {
       chanceOfRainInfo.innerHTML = `${chanceOfRain}%`;
     }
     function showForecast(response) {
+      let forecastBox1 = document.querySelector("#forecast-box1");
+      let forecastBox2 = document.querySelector("#forecast-box2");
+      let forecastBox3 = document.querySelector("#forecast-box3");
+      let forecastBox4 = document.querySelector("#forecast-box4");
       let forecast0Element = document.querySelector("#tomorrow");
       let forecast1Element = document.querySelector("#forecast-1");
       let forecast2Element = document.querySelector("#forecast-2");
@@ -340,6 +356,10 @@ function showTemp(event) {
       let forecastIcon2 = response.data.daily[3].weather[0].icon;
       let forecastIcon3 = response.data.daily[4].weather[0].icon;
 
+      forecastBox1.style.visibility = "visible";
+      forecastBox2.style.visibility = "visible";
+      forecastBox3.style.visibility = "visible";
+      forecastBox4.style.visibility = "visible";
       forecast0Element.innerHTML = `TOMORROW`;
       forecast1Element.innerHTML = `${formatDay(response.data.daily[2].dt)}`;
       forecast2Element.innerHTML = `${formatDay(response.data.daily[3].dt)}`;

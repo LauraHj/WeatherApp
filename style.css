@@ -110,6 +110,7 @@ a {
   border-radius: 25px;
   background-color: #00afb9;
   box-shadow: 8px 8px #f07167;
+  visibility: hidden;
 }
 
 .dateAndTime {
@@ -213,6 +214,9 @@ a {
 }
 .windSpeedInfo {
   margin-bottom: 19px;
+}
+.forecastBox {
+  visibility: hidden;
 }
 
 .forecast0Icon,
