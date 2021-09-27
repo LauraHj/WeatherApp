@@ -64,11 +64,11 @@
             <div class="col-1"></div>
             <div class="col-6 today" id="today">
               <br />
-
+              
               <h2 class="text-center" id="currently"></h2>
               <h1 class="display-2 text-center temp" id="temp"></h1>
               <h3 class="text-center city" id="location">
-                Please enter a location
+                
               </h3>
               <ul>
                 <li
@@ -89,19 +89,29 @@
             <div class="col-1"></div>
             <div class="col-3 week" id="week">
               <!--Weather for the week  -->
-            
-              <h3 class="text-center tomorrow" id="tomorrow">Tomorrow</h3>
-              <h5 class="text-center" id="tomorrow-temp">18°C/30°C</h5>
-              <hr />
-              <h3 class="text-center">Wednesday</h3>
-              <h5 class="text-center" id="two-days">13°C/25°C</h5>
-              <hr />
-              <h3 class="text-center">Thursday</h3>
-              <h5 class="text-center" id="three-days">11°C/23°C</h5>
-              <hr />
-              <h3 class="text-center">Friday</h3>
-              <h5 class="text-center" id="four-days">17°C/27°C</h5>
-            
+              <div class="forecastBox">
+             <img class="forecast0Icon" id="forecast-icon-0" src="" />
+              <h3 class="text-center forecastDay0" id="tomorrow"></h3>
+              <h5 class="text-center forecast0" id="tomorrow-temp"></h5>
+              </div>
+              
+              <div class="forecastBox">
+              <img class="forecast1Icon" id="forecast-icon-1" src="" />
+              <h3 class="text-center forecastDay1" id="forecast-1"></h3>
+              <h5 class="text-center forecast1" id="two-days"></h5>
+              </div>
+
+              <div class="forecastBox">
+              <img class="forecast2Icon" id="forecast-icon-2" src="" />
+              <h3 class="text-center forecastDay2" id="forecast-2"></h3>
+              <h5 class="text-center forecast2" id="three-days"></h5>
+              </div> 
+
+              <div class="forecastBox">
+              <img class="forecast3Icon" id="forecast-icon-3" src="" />
+              <h3 class="text-center forecastDay3" id="forecast-3"></h3>
+              <h5 class="text-center forecast3" id="four-days"></h5>
+              </div> 
             </div>
             <div class="col-1"></div>
           </div>
@@ -146,15 +156,6 @@
             <h2 class="popValue" id="pop-value"></h2>
             </br>
           </div>
-
-          <!-- <div class="row">
-            <a href="#" id="celsius"> 
-              <h3 class="unit">°C</h3>
-            </a>
-            <a href="#" id="fahrenheit">
-              <h3 class="unit2">°F</h3>
-            </a>
-          </div> -->
         </div>
       </div>
     </div>

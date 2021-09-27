@@ -43,10 +43,11 @@ p {
 }
 hr {
   color: #fed9b7;
-  border-top: 7px solid #fed9b7;
+  border-top: 4px solid #fed9b7;
   border-radius: 2px;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 0px;
 }
 a {
   text-decoration: none;
@@ -98,27 +99,17 @@ a {
   width: 130px;
 }
 .appbox {
-  border: solid 9px #f07167;
+  border: solid 10px #f07167;
   border-radius: 5%;
   background-color: #fdfcdc;
   z-index: 2;
   box-shadow: 6px 6px 2px #0081a7;
 }
 .today {
-  border: solid 6px #00afb9;
+  border: solid 8px #0081a7;
   border-radius: 25px;
   background-color: #00afb9;
   box-shadow: 8px 8px #f07167;
-}
-.week {
-  background-color: #f07167;
-  border: solid 6px #f07167;
-  border-radius: 25px;
-  box-shadow: 8px 8px #00afb9;
-}
-
-.tomorrow {
-  margin-top: 10px;
 }
 
 .dateAndTime {
@@ -185,7 +176,7 @@ a {
   font-size: 30px;
   font-weight: 100;
   font-family: "Concert One", cursive;
-  background-color: #00afb9;
+  background-color: #f07167;
   color: #fdfcdc;
   text-shadow: none;
   text-align: center;
@@ -201,7 +192,7 @@ a {
   color: #fdfcdc;
   font-size: 38px;
   text-align: center;
-  background-color: #00afb9;
+  background-color: #f07167;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   text-shadow: 2px 2px #0081a7;
@@ -213,7 +204,7 @@ a {
 .uvIndexInfoDescribe {
   color: #fdfcdc;
   text-align: center;
-  background-color: #00afb9;
+  background-color: #f07167;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   text-shadow: none;
@@ -222,4 +213,36 @@ a {
 }
 .windSpeedInfo {
   margin-bottom: 19px;
+}
+
+.forecast0Icon,
+.forecast1Icon,
+.forecast2Icon,
+.forecast3Icon {
+  display: block;
+  margin: 0 auto;
+  width: 73px;
+}
+
+.forecastDay0,
+.forecastDay1,
+.forecastDay2,
+.forecastDay3 {
+  font-size: 24px;
+  text-transform: capitalize;
+  margin-top: -10px;
+}
+
+.forecast0,
+.forecast1,
+.forecast2,
+.forecast3 {
+  font-size: 25px;
+}
+.forecastBox {
+  background-color: #0081a7;
+  border-radius: 15px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  box-shadow: 4px 4px #f07167;
 }

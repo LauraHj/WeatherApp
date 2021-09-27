@@ -39,6 +39,7 @@ let form = document.querySelector("#location-form");
 form.addEventListener("submit", changeLocation);
 
 //Display weather info using geolocation
+
 function getLocation() {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getUrl);
@@ -49,7 +50,7 @@ function getUrl(position) {
   let lon = position.coords.longitude;
   let apiKey = "c599162a0b8730dc4520eddc02755e60";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   let apiUrlAirQuality = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
   function showTemp(response) {
@@ -89,7 +90,8 @@ function getUrl(position) {
   function showUv(response) {
     let uvInfo = document.querySelector("#uv-info");
     let uvDescribeElement = document.querySelector("#uv-info-describe");
-    let uvMax = Math.round(response.data.daily[0].uvi) - 1;
+    let uvMax = Math.round(response.data.daily[0].uvi);
+    console.log(uvMax);
     let uvDescriptors = [
       "Low",
       "Low",
@@ -134,11 +136,79 @@ function getUrl(position) {
     chanceOfRainInfo.innerHTML = `${chanceOfRain}%`;
   }
 
+  function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = [
+      "SUNDAY",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+    ];
+    return days[day];
+  }
+
+  function showForecast(response) {
+    let forecast0Element = document.querySelector("#tomorrow");
+    let forecast1Element = document.querySelector("#forecast-1");
+    let forecast2Element = document.querySelector("#forecast-2");
+    let forecast3Element = document.querySelector("#forecast-3");
+    let forecast0Value = document.querySelector("#tomorrow-temp");
+    let forecast1Value = document.querySelector("#two-days");
+    let forecast2Value = document.querySelector("#three-days");
+    let forecast3Value = document.querySelector("#four-days");
+    let iconElement0 = document.querySelector("#forecast-icon-0");
+    let iconElement1 = document.querySelector("#forecast-icon-1");
+    let iconElement2 = document.querySelector("#forecast-icon-2");
+    let iconElement3 = document.querySelector("#forecast-icon-3");
+    let forecastIcon0 = response.data.daily[1].weather[0].icon;
+    let forecastIcon1 = response.data.daily[2].weather[0].icon;
+    let forecastIcon2 = response.data.daily[3].weather[0].icon;
+    let forecastIcon3 = response.data.daily[4].weather[0].icon;
+
+    forecast0Element.innerHTML = `TOMORROW`;
+    forecast1Element.innerHTML = `${formatDay(response.data.daily[2].dt)}`;
+    forecast2Element.innerHTML = `${formatDay(response.data.daily[3].dt)}`;
+    forecast3Element.innerHTML = `${formatDay(response.data.daily[4].dt)}`;
+
+    forecast0Value.innerHTML = `${Math.round(
+      response.data.daily[1].temp.max
+    )}°C / ${Math.round(response.data.daily[1].temp.min)}°C`;
+    forecast1Value.innerHTML = `${Math.round(
+      response.data.daily[2].temp.max
+    )}°C / ${Math.round(response.data.daily[2].temp.min)}°C`;
+    forecast2Value.innerHTML = `${Math.round(
+      response.data.daily[3].temp.max
+    )}°C / ${Math.round(response.data.daily[3].temp.min)}°C`;
+    forecast3Value.innerHTML = `${Math.round(
+      response.data.daily[4].temp.max
+    )}°C / ${Math.round(response.data.daily[4].temp.min)}°C`;
+    iconElement0.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${forecastIcon0}@2x.png`
+    );
+    iconElement1.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${forecastIcon1}@2x.png`
+    );
+    iconElement2.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${forecastIcon2}@2x.png`
+    );
+    iconElement3.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${forecastIcon3}@2x.png`
+    );
+  }
+
   axios.get(apiUrl).then(showTemp);
-  // axios.get(reverseGeocodeApiUrl).then(reverseGeocode);
   axios.get(apiUrlMoreInfo).then(showUv);
   axios.get(apiUrlAirQuality).then(showAirQuality);
   axios.get(apiUrlMoreInfo).then(showChanceOfRain);
+  axios.get(apiUrlMoreInfo).then(showForecast);
 }
 
 let useLocationButton = document.querySelector("#use-location");
@@ -150,8 +220,21 @@ function showTemp(event) {
   let city = document.querySelector("#location-input");
   let apiKey = "c599162a0b8730dc4520eddc02755e60";
   let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=${apiKey}`;
-  // let geocodeApiKey = "a36f3f6069d4b31bb2a19b59ee676056";
-  // let geocodeURL = `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${city.value}`;
+
+  function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = [
+      "SUNDAY",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+    ];
+    return days[day];
+  }
 
   function showTempFromCity(response) {
     let temperature = Math.round(response.data.main.temp) + "°C";
@@ -185,9 +268,6 @@ function showTemp(event) {
   }
 
   function findCoords(response) {
-    // let lat = response.data.data[0].latitude;
-    // let lon = response.data.data[0].longitude;
-    // let apiKey = "c599162a0b8730dc4520eddc02755e60";
     let lat = response.data.coord.lat;
     let lon = response.data.coord.lon;
     let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
@@ -216,8 +296,14 @@ function showTemp(event) {
         "Extreme",
         "Extreme",
         "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
       ];
-      let uvMax = Math.round(response.data.daily[0].uvi);
+      let uvMax = Math.round(response.data.current.uvi);
       let uvDescribe = uvDescriptors[uvMax];
       uvInfo.innerHTML = `${uvMax}`;
       uvDescribeElement.innerHTML = `(${uvDescribe})`;
@@ -236,6 +322,60 @@ function showTemp(event) {
       let chanceOfRain = 100 * response.data.daily[0].pop;
       chanceOfRainInfo.innerHTML = `${chanceOfRain}%`;
     }
+    function showForecast(response) {
+      let forecast0Element = document.querySelector("#tomorrow");
+      let forecast1Element = document.querySelector("#forecast-1");
+      let forecast2Element = document.querySelector("#forecast-2");
+      let forecast3Element = document.querySelector("#forecast-3");
+      let forecast0Value = document.querySelector("#tomorrow-temp");
+      let forecast1Value = document.querySelector("#two-days");
+      let forecast2Value = document.querySelector("#three-days");
+      let forecast3Value = document.querySelector("#four-days");
+      let iconElement0 = document.querySelector("#forecast-icon-0");
+      let iconElement1 = document.querySelector("#forecast-icon-1");
+      let iconElement2 = document.querySelector("#forecast-icon-2");
+      let iconElement3 = document.querySelector("#forecast-icon-3");
+      let forecastIcon0 = response.data.daily[1].weather[0].icon;
+      let forecastIcon1 = response.data.daily[2].weather[0].icon;
+      let forecastIcon2 = response.data.daily[3].weather[0].icon;
+      let forecastIcon3 = response.data.daily[4].weather[0].icon;
+
+      forecast0Element.innerHTML = `TOMORROW`;
+      forecast1Element.innerHTML = `${formatDay(response.data.daily[2].dt)}`;
+      forecast2Element.innerHTML = `${formatDay(response.data.daily[3].dt)}`;
+      forecast3Element.innerHTML = `${formatDay(response.data.daily[4].dt)}`;
+
+      forecast0Value.innerHTML = `${Math.round(
+        response.data.daily[1].temp.max
+      )}°C / ${Math.round(response.data.daily[1].temp.min)}°C`;
+      forecast1Value.innerHTML = `${Math.round(
+        response.data.daily[2].temp.max
+      )}°C / ${Math.round(response.data.daily[2].temp.min)}°C`;
+      forecast2Value.innerHTML = `${Math.round(
+        response.data.daily[3].temp.max
+      )}°C / ${Math.round(response.data.daily[3].temp.min)}°C`;
+      forecast3Value.innerHTML = `${Math.round(
+        response.data.daily[4].temp.max
+      )}°C / ${Math.round(response.data.daily[4].temp.min)}°C`;
+      iconElement0.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${forecastIcon0}@2x.png`
+      );
+      iconElement1.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${forecastIcon1}@2x.png`
+      );
+      iconElement2.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${forecastIcon2}@2x.png`
+      );
+      iconElement3.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${forecastIcon3}@2x.png`
+      );
+    }
+
+    axios.get(apiUrlMoreInfo).then(showForecast);
     axios.get(apiUrlMoreInfo).then(showUvFromCity);
     axios.get(apiUrlMoreInfo).then(showChanceOfRainFromCity);
     axios.get(apiUrlAirQuality).then(showAirQualFromCity);
@@ -246,15 +386,3 @@ function showTemp(event) {
 }
 let input = document.querySelector("#location-form");
 input.addEventListener("submit", showTemp);
-
-//Forecast
-
-// function showForecast(response) {
-//   let forecast0 = document.querySelector("#tomorrow");
-//   let forecast1 = document.querySelector("#forecast-1");
-//   let forecast2 = document.querySelector("#forecast-2");
-//   let forecast3 = document.querySelector("#forecast-3");
-
-//   let forecast[0] =
-
-// }
