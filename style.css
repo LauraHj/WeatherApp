@@ -157,7 +157,8 @@ a {
 }
 .uvIndex:hover,
 .humidity:hover,
-.airQuality:hover {
+.airQuality:hover,
+.pop:hover {
   background-color: #0081a7;
 
   color: #fdfcdc;
@@ -191,7 +192,8 @@ a {
 }
 .uvIndex,
 .humidity,
-.airQuality {
+.airQuality,
+.pop {
   background-color: #f07167;
   font-size: 30px;
   border: 0;
@@ -212,53 +214,13 @@ a {
   font-size: 35px;
   margin-top: -10px;
 }
-/* .uvLeft {
-  display: block;
-  border: solid 6px #f07167;
-  border-radius: 25px;
-  background-color: #fdfcdc;
-  box-shadow: 3px 3px #0081a7;
-  margin-top: 140px;
-  text-align: center;
-  margin-left: 20px;
-}
-.uvLeftHeading {
-  font-size: 30px;
-  font-weight: 900;
-  text-align: center;
-  color: #f07167;
-  text-shadow: 1px 1px #0081a7;
-} */
-/* .unit {
-  display: block;
-  text-align: right;
-  color: #f07167;
-  text-shadow: 2px 2px #0081a7;
-  font-size: 70px;
-  font-weight: 900;
-  border: solid 6px #f07167;
-  border-radius: 25px;
-  background-color: #fdfcdc;
-  margin-top: 10px;
-  padding-right: 10px;
 
-  transition: all 200ms ease-in-out;
-  box-shadow: 3px 3px #0081a7;
+.uvIndexInfo {
+  color: #0081a7;
+  text-align: center;
 }
 
-.unit2 {
-  display: block;
-  text-align: right;
-  color: #f07167;
-  text-shadow: 2px 2px #0081a7;
-  font-size: 70px;
-  font-weight: 900;
-  border: solid 6px #f07167;
-  border-radius: 25px;
-  background-color: #fdfcdc;
-  margin-top: 1px;
-  padding-right: 10px;
-
-  z-index: 1;
-  box-shadow: 3px 3px #0081a7;
-} */
+.airQualityInfo {
+  color: #0081a7;
+  text-align: center;
+}

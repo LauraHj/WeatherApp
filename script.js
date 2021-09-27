@@ -91,6 +91,8 @@ function getUrl(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   reverseGeocodeApiKey = "a36f3f6069d4b31bb2a19b59ee676056";
   reverseGeocodeApiUrl = `http://api.positionstack.com/v1/reverse?access_key=${reverseGeocodeApiKey}&query=${lat},${lon}`;
+  let apiUrlUv = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  let apiUrlAirQuality = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
   function showTemp(response) {
     let temperature = Math.round(response.data.main.temp) + "°C";
@@ -124,9 +126,23 @@ function getUrl(position) {
     let cityName = response.data.data[0].locality;
     location.innerHTML = `in ${cityName}`;
   }
+  function showUv(response) {
+    let uvInfo = document.querySelector("#uv-info");
+    let uvMax = Math.round(response.data.daily[0].uvi);
+    uvInfo.innerHTML = `Maximum UV index: ${uvMax}`;
+  }
+  function showAirQuality(response) {
+    let airQualityInfo = document.querySelector("#air-qual-info");
+    let airQuality = response.data.list[0].main.aqi - 1;
+    let airQualValue = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
+    let airQual = airQualValue[airQuality];
+    airQualityInfo.innerHTML = `${airQual}`;
+  }
 
   axios.get(apiUrl).then(showTemp);
   axios.get(reverseGeocodeApiUrl).then(reverseGeocode);
+  axios.get(apiUrlUv).then(showUv);
+  axios.get(apiUrlAirQuality).then(showAirQuality);
 }
 
 let useLocationButton = document.querySelector("#use-location");
@@ -138,6 +154,8 @@ function showTemp(event) {
   let city = document.querySelector("#location-input");
   let apiKey = "c599162a0b8730dc4520eddc02755e60";
   let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=${apiKey}`;
+  let geocodeApiKey = "a36f3f6069d4b31bb2a19b59ee676056";
+  let geocodeURL = `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${city.value}`;
 
   function showTempFromCity(response) {
     let temperature = Math.round(response.data.main.temp) + "°C";
@@ -166,7 +184,53 @@ function showTemp(event) {
     );
     parkElement.setAttribute("src", "park.svg");
   }
+
+  function findCoords(response) {
+    let lat = response.data.data[0].latitude;
+    let lon = response.data.data[0].longitude;
+    let apiKey = "c599162a0b8730dc4520eddc02755e60";
+    let apiUrlUv = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    let apiUrlAirQuality = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+    function showUvFromCity(response) {
+      let uvInfo = document.querySelector("#uv-info");
+      let uvMax = Math.round(response.data.daily[0].uvi);
+      uvInfo.innerHTML = `Maximum UV index: ${uvMax}`;
+    }
+
+    function showAirQualFromCity(response) {
+      let airQualityInfo = document.querySelector("#air-qual-info");
+      let airQuality = response.data.list[0].main.aqi - 1;
+      let airQualValue = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
+      let airQual = airQualValue[airQuality];
+      airQualityInfo.innerHTML = `${airQual}`;
+    }
+
+    axios.get(apiUrlUv).then(showUvFromCity);
+    axios.get(apiUrlAirQuality).then(showAirQualFromCity);
+  }
+
   axios.get(apiUrlCity).then(showTempFromCity);
+  axios.get(geocodeURL).then(findCoords);
 }
 let input = document.querySelector("#location-form");
 input.addEventListener("submit", showTemp);
+
+//Fetch UV data
+
+// function getUvIndex() {
+//   let lat = 27.4705;
+//   let lon = 153.026;
+//   let apiKeyUv = "c599162a0b8730dc4520eddc02755e60";
+//   let uvUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKeyUv}`;
+
+//   function showUv(response) {
+//     let uvInfo = document.querySelector("#uv-info");
+//     let uvMax = Math.round(response.data.daily[0].uvi);
+//     uvInfo.innerHTML = `Today's maximum UV index: ${uvMax}`;
+//   }
+//   axios.get(uvUrl).then(showUv);
+// }
+
+// let uvButton = document.querySelector("#uvIndexButton");
+// uvButton.addEventListener("click", getUvIndex);
