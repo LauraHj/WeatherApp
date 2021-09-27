@@ -128,8 +128,32 @@ function getUrl(position) {
   }
   function showUv(response) {
     let uvInfo = document.querySelector("#uv-info");
-    let uvMax = Math.round(response.data.daily[0].uvi);
-    uvInfo.innerHTML = `Maximum UV index: ${uvMax}`;
+    let uvDescribeElement = document.querySelector("#uv-info-describe");
+    let uvMax = Math.round(response.data.daily[0].uvi) - 1;
+    let uvDescriptors = [
+      "Low",
+      "Low",
+      "Moderate",
+      "Moderate",
+      "Moderate",
+      "High",
+      "High",
+      "Very High",
+      "Very High",
+      "Very High",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+    ];
+    let uvDescribe = uvDescriptors[uvMax];
+    uvInfo.innerHTML = `${uvMax}`;
+    uvDescribeElement.innerHTML = `(${uvDescribe})`;
   }
   function showAirQuality(response) {
     let airQualityInfo = document.querySelector("#air-qual-info");
@@ -194,8 +218,32 @@ function showTemp(event) {
 
     function showUvFromCity(response) {
       let uvInfo = document.querySelector("#uv-info");
+      let uvDescribeElement = document.querySelector("#uv-info-describe");
+      let uvDescriptors = [
+        "Low",
+        "Low",
+        "Moderate",
+        "Moderate",
+        "Moderate",
+        "High",
+        "High",
+        "Very High",
+        "Very High",
+        "Very High",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+        "Extreme",
+      ];
       let uvMax = Math.round(response.data.daily[0].uvi);
-      uvInfo.innerHTML = `Maximum UV index: ${uvMax}`;
+      let uvDescribe = uvDescriptors[uvMax];
+      uvInfo.innerHTML = `${uvMax}`;
+      uvDescribeElement.innerHTML = `(${uvDescribe})`;
     }
 
     function showAirQualFromCity(response) {
