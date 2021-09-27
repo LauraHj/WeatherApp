@@ -51,7 +51,7 @@ function getUrl(position) {
   let apiKey = "c599162a0b8730dc4520eddc02755e60";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  let apiUrlAirQuality = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  let apiUrlAirQuality = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
   function showTemp(response) {
     let temperature = Math.round(response.data.main.temp) + "°C";
@@ -271,7 +271,7 @@ function showTemp(event) {
     let lat = response.data.coord.lat;
     let lon = response.data.coord.lon;
     let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-    let apiUrlAirQuality = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    let apiUrlAirQuality = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     function showUvFromCity(response) {
       let uvInfo = document.querySelector("#uv-info");
