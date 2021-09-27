@@ -217,7 +217,9 @@ a {
 
 .uvIndexInfo,
 .uvIndexInfoDescribe,
-.airQualityInfo {
+.airQualityInfo,
+.humidityInfo,
+.popValue {
   color: #0081a7;
   text-align: center;
 }

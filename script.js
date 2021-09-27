@@ -91,7 +91,7 @@ function getUrl(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   reverseGeocodeApiKey = "a36f3f6069d4b31bb2a19b59ee676056";
   reverseGeocodeApiUrl = `http://api.positionstack.com/v1/reverse?access_key=${reverseGeocodeApiKey}&query=${lat},${lon}`;
-  let apiUrlUv = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
   let apiUrlAirQuality = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
   function showTemp(response) {
@@ -113,7 +113,7 @@ function getUrl(position) {
     weatherDescription.innerHTML = `${description}`;
     tempMax.innerHTML = `Today's high: ${todaysMax}°C`;
     tempMin.innerHTML = `Today's low: ${todaysMin}°C`;
-    humidity.innerHTML = `Humidity: ${humidityData}%`;
+    humidity.innerHTML = `${humidityData}%`;
     currently.innerHTML = `CURRENTLY`;
     iconElement.setAttribute(
       "src",
@@ -162,11 +162,17 @@ function getUrl(position) {
     let airQual = airQualValue[airQuality];
     airQualityInfo.innerHTML = `${airQual}`;
   }
+  function showChanceOfRain(response) {
+    let chanceOfRainInfo = document.querySelector("#pop-value");
+    let chanceOfRain = 100 * response.data.daily[0].pop;
+    chanceOfRainInfo.innerHTML = `${chanceOfRain}%`;
+  }
 
   axios.get(apiUrl).then(showTemp);
   axios.get(reverseGeocodeApiUrl).then(reverseGeocode);
-  axios.get(apiUrlUv).then(showUv);
+  axios.get(apiUrlMoreInfo).then(showUv);
   axios.get(apiUrlAirQuality).then(showAirQuality);
+  axios.get(apiUrlMoreInfo).then(showChanceOfRain);
 }
 
 let useLocationButton = document.querySelector("#use-location");
@@ -200,7 +206,7 @@ function showTemp(event) {
     weatherDescription.innerHTML = `${description}`;
     tempMax.innerHTML = `Today's high: ${todaysMax}°C`;
     tempMin.innerHTML = `Today's low: ${todaysMin}°C`;
-    humidity.innerHTML = `Humidity: ${humidityData}%`;
+    humidity.innerHTML = `${humidityData}%`;
     currently.innerHTML = `CURRENTLY`;
     iconElement.setAttribute(
       "src",
