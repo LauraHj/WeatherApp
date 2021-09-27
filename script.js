@@ -282,7 +282,7 @@ function showTemp(event) {
   function findCoords(response) {
     let lat = response.data.coord.lat;
     let lon = response.data.coord.lon;
-    let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
     let apiUrlAirQuality = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     function showUvFromCity(response) {
