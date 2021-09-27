@@ -150,6 +150,12 @@ function getUrl(position) {
       "Extreme",
       "Extreme",
       "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
+      "Extreme",
     ];
     let uvDescribe = uvDescriptors[uvMax];
     uvInfo.innerHTML = `${uvMax}`;
@@ -219,7 +225,7 @@ function showTemp(event) {
     let lat = response.data.data[0].latitude;
     let lon = response.data.data[0].longitude;
     let apiKey = "c599162a0b8730dc4520eddc02755e60";
-    let apiUrlUv = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    let apiUrlMoreInfo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
     let apiUrlAirQuality = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     function showUvFromCity(response) {
@@ -260,7 +266,13 @@ function showTemp(event) {
       airQualityInfo.innerHTML = `${airQual}`;
     }
 
-    axios.get(apiUrlUv).then(showUvFromCity);
+    function showChanceOfRainFromCity(response) {
+      let chanceOfRainInfo = document.querySelector("#pop-value");
+      let chanceOfRain = 100 * response.data.daily[0].pop;
+      chanceOfRainInfo.innerHTML = `${chanceOfRain}%`;
+    }
+    axios.get(apiUrlMoreInfo).then(showUvFromCity);
+    axios.get(apiUrlMoreInfo).then(showChanceOfRainFromCity);
     axios.get(apiUrlAirQuality).then(showAirQualFromCity);
   }
 
