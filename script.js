@@ -93,7 +93,6 @@ function getUrl(position) {
     let uvInfo = document.querySelector("#uv-info");
     let uvDescribeElement = document.querySelector("#uv-info-describe");
     let uvMax = Math.round(response.data.daily[0].uvi);
-    console.log(uvMax);
     let uvDescriptors = [
       "Low",
       "Low",
@@ -134,7 +133,7 @@ function getUrl(position) {
   }
   function showChanceOfRain(response) {
     let chanceOfRainInfo = document.querySelector("#pop-value");
-    let chanceOfRain = 100 * response.data.daily[0].pop;
+    let chanceOfRain = Math.round(100 * response.data.daily[0].pop);
     chanceOfRainInfo.innerHTML = `${chanceOfRain}%`;
   }
 
@@ -331,7 +330,7 @@ function showTemp(event) {
 
     function showChanceOfRainFromCity(response) {
       let chanceOfRainInfo = document.querySelector("#pop-value");
-      let chanceOfRain = 100 * response.data.daily[0].pop;
+      let chanceOfRain = Math.round(100 * response.data.daily[0].pop);
       chanceOfRainInfo.innerHTML = `${chanceOfRain}%`;
     }
     function showForecast(response) {
